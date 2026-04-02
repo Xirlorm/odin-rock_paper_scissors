@@ -1,20 +1,19 @@
-function getComputerChoice() {
-  const moves = ["rock", "paper", "scissors"];
-  return moves[Math.floor(Math.random() * moves.length)];
-}
+// Rock-Paper-Scissors Game Logic
+// Author: [Xirlorm](https://github.com/Xirlorm)
+// This script implements the game logic for a simple Rock-Paper-Scissors game.
+// The game continues until either the player or the computer reaches 5 wins.
+// The player's move is determined by button clicks, while the computer's move is generated randomly.
+// The game displays the result of each round and updates the scores accordingly.
 
-function getHumanChoice() {
-  const choice = prompt(
-    "Enter your move (rock, paper, or scissors):",
-  ).toLowerCase();
-  if (["rock", "paper", "scissors"].includes(choice)) {
-    return choice;
-  } else {
-    alert("Invalid choice. Please try again.");
-    return getHumanChoice();
-  }
-}
+// Initialize scores
+let humanScore = 0;
+let computerScore = 0;
 
+// Computer's random move generator
+const getComputerChoice = () =>
+  ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
+
+// Player's move input
 function getWinner(playerMove, computerMove) {
   return playerMove === computerMove
     ? "It's a tie!"
@@ -25,49 +24,54 @@ function getWinner(playerMove, computerMove) {
       : "Computer wins!";
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
+// Play a single round and update scores
 function playRound(humanMove, computerMove) {
   const result = getWinner(humanMove, computerMove);
-
+  const resultElement = document.querySelector("#result");
+  const playerScoreElement = document.querySelector("#player-score .score");
+  const computerScoreElement = document.querySelector("#computer-score .score");
   if (result === "You win!") {
     humanScore++;
   } else if (result === "Computer wins!") {
     computerScore++;
   }
-  console.log(
-    `You chose: ${humanMove}, Computer chose: ${computerMove}. ${result}`,
-  );
-}
+  resultElement.textContent = `You chose ${humanMove}, computer chose ${computerMove}. ${result}`;
+  playerScoreElement.textContent = humanScore;
+  computerScoreElement.textContent = computerScore;
 
-function playGame() {
-  let humanMove = "";
-  let computerMove = "";
-
-  while (humanScore < 5 && computerScore < 5) {
-    humanMove = getHumanChoice();
-    computerMove = getComputerChoice();
-    playRound(humanMove, computerMove);
+  // Check for game over
+  if (humanScore === 5 || computerScore === 5) {
+    const winner =
+      humanScore === 5 ? "You win the game!" : "Computer wins the game!";
+    resultElement.textContent += ` ${winner} Click any move to play again.`;
+    // Reset scores for a new game
+    humanScore = 0;
+    computerScore = 0;
+    resultElement.style.backgroundColor = "#333"; // Reset background color
+    resultElement.style.color = "#fff"; // Reset text color
+    resultElement.style.borderRadius = "6px"; // Add border radius for better aesthetics
+  } else {
+    resultElement.style.backgroundColor = "transparent"; // Reset background color for ongoing game
+    resultElement.style.color = "#333"; // Reset text color for ongoing game
+    resultElement.style.borderRadius = "0"; // Reset border radius for ongoing game
   }
-  console.log(
-    humanScore === 5
-      ? "Congratulations! You won the game!"
-      : "Game over! The computer won the game.",
-  );
 }
 
-playGame();
-
-// Tests
-// console.log(getWinner("rock", "scissors")); // You win!
-// console.log(getWinner("paper", "rock")); // You win!
-// console.log(getWinner("scissors", "paper")); // You win!
-// console.log(getWinner("rock", "paper")); // Computer wins!
-// console.log(getWinner("paper", "scissors")); // Computer wins!
-// console.log(getWinner("scissors", "rock")); // Computer wins!
-// console.log(getWinner("rock", "rock")); // It's a tie!
-// console.log(getWinner("paper", "paper")); // It's a tie!
-// console.log(getWinner("scissors", "scissors")); // It's a tie!.
-// console.log(getComputerChoice()); // Random move
-// console.log(getHumanChoice()); // User input
+// Event listener for player's move selection
+document.querySelector("#gameboard").addEventListener(
+  "click",
+  (event) => {
+    switch (event.target.id || event.target.alt.toLowerCase()) {
+      case "rock":
+        playRound("rock", getComputerChoice());
+        break;
+      case "paper":
+        playRound("paper", getComputerChoice());
+        break;
+      case "scissors":
+        playRound("scissors", getComputerChoice());
+        break;
+    }
+  },
+  false,
+);

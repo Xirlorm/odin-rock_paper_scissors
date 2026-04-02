@@ -1,0 +1,100 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 6px;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+h1 {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.6em;
+  text-align: center;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: extra-bold;
+}
+
+h2 {
+  background: #333;
+  color: #fff;
+  padding: 6px 18px;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: 1000;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-color: #eee;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #333;
+}
+
+#gameboard {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+#outcome {
+  padding: 10px;
+  color: #333;
+}
+
+#result {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  border-top: 2px solid #333;
+  margin: 0;
+  padding: 10px 20px;
+  min-height: 40px;
+  width: 300px;
+  text-align: center;
+}
+
+#scoreboard,
+#scoreboard > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 0;
+}
+
+#scoreboard > div {
+  margin: 0;
+  border-radius: 6px;
+  border: 2px solid #333;
+  padding-right: 12px;
+}
+
+#scoreboard h2 {
+  min-width: 80px;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+#scoreboard > div > span {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #333;
+}

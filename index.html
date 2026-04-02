@@ -8,12 +8,30 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- <h1>Rock Paper Scissors</h1>
-    <div class="gameboard">
-      <button id="paper">Paper</button>
-      <button id="rock">Rock</button>
-      <button id="scissors">Scissors</button>
+    <h1>Rock Paper Scissors</h1>
+    <div id="scoreboard">
+      <div id="player-score">
+        <h2>Player</h2>
+        <span class="score">0</span>
+      </div>
+      <div id="computer-score">
+        <h2>Computer</h2>
+        <span class="score">0</span>
+      </div>
     </div>
-    <div class="result" id="result"></div> -->
+    <div id="gameboard">
+      <button id="rock"><img src="./images/rock.svg" alt="Rock" />Rock</button>
+      <button id="paper">
+        <img src="./images/paper.svg" alt="Paper" />Paper
+      </button>
+      <button id="scissors">
+        <img src="./images/scissors.svg" alt="Scissors" />Scissors
+      </button>
+    </div>
+    <div id="result">
+      Rock beats Scissors, Scissors beats Paper, and Paper beats Rock. <br />
+      <br />
+      Click on Rock, Paper, or Scissors to play!
+    </div>
   </body>
 </html>
